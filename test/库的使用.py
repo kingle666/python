@@ -1,4 +1,5 @@
 from bs4 import BeautifulSoup
+from lxml import etree
 html = '''
 <table class="tablelist" cellpadding="0" cellspacing="0">
 		    	<tr class="h">
@@ -85,10 +86,62 @@ html = '''
 		    			<div class="clr"></div>
 		    		</td>
 		    	</tr>
+		    	<div>
+		    	hello
+		    	</div>
 		    </table>
+<div>
+hello
+</div>
+<p>12312312312312</p>
 '''
 soup = BeautifulSoup(html, "lxml")
-# trs = soup.find_all('tr')
+# # trs = soup.find_all('tr')
+# # for tr in trs:
+# #     print(type(tr))
+# #     break
+# trs = soup.find_all('tr', limit=2)[1]
+# print(tr)
+# aList = soup.find_all('a', attrs={"id": 'test', "class_": 'test'})
+# for a in aList:
+#     print(a)h
+# aList = soup.find_all('a')
+# for a in aList:
+#     # href = a['href']
+#     # print(href)
+#     href = a.attrs['href']
+#     print(href)
+# trs = soup.find_all('tr')[1:]
+# movies = []
 # for tr in trs:
-#     print(type(tr))
-#     break
+#     movie ={}
+#     # tds = tr.find_all('td')
+#     # title = tds[0].string
+#     # #category = tds[1].string
+#     #nums = tds[2].string
+#     #city = tds[3].string
+#     #pubtimes = tds[4].string
+#     # movie['title'] = title
+#     #movie['category'] = category
+#    # movie['nums'] = nums
+#     #movie['city'] = city
+#     # #movie['pubtime'] = pubtimes
+#     # movies.append(movie)
+#     infos = list(tr.strings)
+#     movie['title'] = infos[0]
+#     movie['category'] = infos[1]
+#     movie['nums'] = infos[2]
+#     movie['city'] = infos[3]
+#     movies.append(movie)
+#     #pr#int(infos)
+#
+# print(movies)
+# a = soup.find('a')
+# print(a)
+soup = BeautifulSoup(html,'lxml')
+# print(soup)
+# table = soup.find('table')
+# table.find_all("tr")
+# print(type(table))
+div = soup.find('div')
+print(type(div.string))
