@@ -90,6 +90,5 @@ from itertools import accumulate,takewhile,product
 # }
 # print(len(list(product(range(3),a))))
 
-a = (lambda x: x*(x+1))
-(6)
+a = (lambda x: x*(x+1))(6)
 print(a)
