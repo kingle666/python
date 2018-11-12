@@ -18,7 +18,7 @@ class LagouSpider(object):
         while True:
             source = self.driver.page_source
             WebDriverWait(driver=self.driver,timeout=10).until(
-                EC.presence_of_element_located((By.XPATH, "//dev[@class='pager_container']/span[last()]"))
+                EC.presence_of_element_located((By.XPATH,"//dev[@class='pager_container']/span[last()]"))
             )
             self.parse_list_page(source)
             try:
@@ -44,7 +44,7 @@ class LagouSpider(object):
         self.driver.execute_script("windows.open('%s')" % url)
         self.driver.switch_to.window(self.driver.window_handles[1])
         WebDriverWait(self.driver,timeout=10).until(
-            EC.presence_of_element_located((By.XPATH,"//span[@class='name']"))
+            EC.presence_of_element_located((By.XPATH,"//div[@class='job-name']/span[@class='name']"))
         )
         source = self.driver.page_source
         self.parse_detail_page(source)
@@ -63,7 +63,7 @@ class LagouSpider(object):
         education = job_request_spans[3].xpath(".//text()")[0].strip()
         education = re.sub(r"[\s/]", "", education)
         desc = "".join(html.xpath("//dd[@class='job_bt']//text()")).strip()
-        company_name = html.xpath("//h2[@class='f1]/text()").strip()
+        company_name = html.xpath("//h2[@class='f1']/text()").strip()
         position = {
             'name': position_name,
             'company_name': company_name,

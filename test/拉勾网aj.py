@@ -30,6 +30,7 @@ def request_list_page():
             break
         break
 def parse_postion_detail(url):
+    positions = []
     response = requests.get(url,headers=headers)
     text = response.text
     html = etree.HTML(text)
@@ -42,8 +43,20 @@ def parse_postion_detail(url):
     work_years = re.sub(r"[\s/]", "", work_years)
     education = job_request_spans[3].xpath(".//text()")[0].strip()
     education = re.sub(r"[\s/]", "", education)
-    desc = "".join(html.xpath("//dd[@class='job_bt]//text()"))
-    print(desc)
+    desc = "".join(html.xpath("//dd[@class='job_bt']//text()")).strip()
+    company_name = html.xpath("//h2[@class='f1']/text()")
+    print(education)
+    position = {
+        'name': position,
+        'company_name': company_name,
+        'salary': salary,
+        'city': city,
+        'work_years': work_years,
+        'education': education,
+        'desc': desc
+    }
+    positions.append(position)
+    # print(positions)
 def main():
     request_list_page()
 
