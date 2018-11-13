@@ -44,7 +44,9 @@ def parse_postion_detail(url):
     education = job_request_spans[3].xpath(".//text()")[0].strip()
     education = re.sub(r"[\s/]", "", education)
     desc = "".join(html.xpath("//dd[@class='job_bt']//text()")).strip()
-    company_name = html.xpath("//h2[@class='f1']/text()")
+    print(html)
+    company_name = html.xpath("//ul[@class='c_feature']/text()")
+
     print(company_name)
     position = {
         'name': position,
@@ -56,7 +58,7 @@ def parse_postion_detail(url):
         'desc': desc
     }
     positions.append(position)
-    print(positions)
+    # print(positions)
 def main():
     request_list_page()
 

@@ -18,11 +18,11 @@ class LagouSpider(object):
         while True:
             source = self.driver.page_source
             WebDriverWait(driver=self.driver,timeout=10).until(
-                EC.presence_of_element_located((By.XPATH,"//dev[@class='pager_container']/span[last()]"))
+                EC.presence_of_element_located((By.XPATH, "//div[@class='pager_container']/span[last()]"))
             )
             self.parse_list_page(source)
             try:
-                next_btn = self.driver.find_element_by_xpath("//dev[@class='pager_container']/span[last()]")
+                next_btn = self.driver.find_element_by_xpath("//div[@class='pager_container']/span[last()]")
                 if "pager_next_disabled" in next_btn.get_attribute("class"):
                     break
                 else:
@@ -41,7 +41,10 @@ class LagouSpider(object):
 
     def request_detail_page(self,url):
         # self.driver.get(url)
-        self.driver.execute_script("windows.open('%s')" % url)
+        print()
+        print(url)
+        print()
+        self.driver.execute_script("window.open('%s')" % url)
         self.driver.switch_to.window(self.driver.window_handles[1])
         WebDriverWait(self.driver,timeout=10).until(
             EC.presence_of_element_located((By.XPATH,"//div[@class='job-name']/span[@class='name']"))
