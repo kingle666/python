@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jq请求</title>
+</head>
+<body>
+<input type="text" class="inp1">
+<input type="password" class="inp2">
+<button>请求</button>
+</body>
+<script src="jquery-3.3.1.min.js"></script>
+<script>
+    var h1 = document.querySelector("h1")
+    var btn = document.querySelector("button")
+    var inp1 = document.querySelector(".inp1")
+    var inp2 = document.querySelector(".inp2")
+    btn.onclick = function () {
+        console.log(inp1.value)
+        console.log(inp2.value)
+       $.ajax({
+           url:"http://127.0.0.1:5000/testA",
+           data:{
+               usr: inp1.value,
+               ps: inp2.value
+           },
+           success: function (data) {
+            h1.innerHTML = data
+           }
+       })
+    }
+</script>
+</html>

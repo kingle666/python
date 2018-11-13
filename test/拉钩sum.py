@@ -63,7 +63,7 @@ class LagouSpider(object):
         education = job_request_spans[3].xpath(".//text()")[0].strip()
         education = re.sub(r"[\s/]", "", education)
         desc = "".join(html.xpath("//dd[@class='job_bt']//text()")).strip()
-        company_name = html.xpath("//h2[@class='f1']/text()").strip()
+        company_name = html.xpath("//h2[@class='f1']/text()")
         position = {
             'name': position_name,
             'company_name': company_name,
